@@ -107,13 +107,15 @@ Rules:
             },
         });
 
-        const content = response.output[0].content[0];
+        const anyResponse = response as any;
+        const firstOutput = anyResponse.output?.[0];
+        const firstContent = firstOutput?.content?.[0];
 
         // With text.format JSON schema, the model returns JSON as text
         const jsonText =
-            content.type === "output_text"
-                ? content.text
-                : JSON.stringify(content);
+            typeof firstContent?.text === "string"
+                ? firstContent.text
+                : JSON.stringify(firstOutput);
 
         const parsed = JSON.parse(jsonText);
 
