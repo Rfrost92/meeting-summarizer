@@ -78,7 +78,6 @@ Rules:
                     content: `Instructions: ${userInstructions}\n\nTranscript:\n${transcriptText}`,
                 },
             ],
-            // <<–– this replaced response_format
             text: {
                 format: {
                     type: "json_schema",
